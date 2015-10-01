@@ -6,11 +6,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.PriorityQueue;
 
 import org.apache.commons.io.FileUtils;
 
 import com.google.common.base.Joiner;
+
+import Common.Heap;
 
 public class KFrequentWordsInFile {
 	
@@ -57,12 +58,10 @@ public class KFrequentWordsInFile {
 			return flag;
 		}
 	}
-
-
 	
 	public static List<WordCounter> findKFrequentWords(String input, int k) {
 		Map<String, WordCounter> lookup = new HashMap<String, WordCounter>();
-		PriorityQueue<WordCounter> heap = new PriorityQueue<WordCounter>();
+		Heap<WordCounter> heap = new Heap<WordCounter>((w1, w2) -> w2.count - w1.count);
 
 		String[] words = input.split("\\W+");
 		for (String word : words) {
@@ -76,7 +75,7 @@ public class KFrequentWordsInFile {
 				if (wc.flag) {
 					heap.remove(wc);
 				}
-				heap.offer(wc);
+				heap.add(wc);
 				wc.flag = true;
 			} else {
 				int min = heap.peek().count;
@@ -86,9 +85,8 @@ public class KFrequentWordsInFile {
 						heap.poll().flag = false;
 					} else {
 						heap.remove(wc);
-						wc.flag = false;
 					}
-					heap.offer(wc);
+					heap.add(wc);
 					wc.flag = true;
 				}
 			}

@@ -129,6 +129,17 @@ public class Heap<T> {
 		return sb.toString();
 	}
 	
+	public T[] toArray(T[] array) {
+		for (int i = 0; i < array.length; i++) {
+			if (i + 1 <= size) {
+				array[i] = (T)data[i + 1];
+			} else {
+				break;
+			}
+		}
+		return array;
+	}
+	
 	private boolean hasParent(int index) {
 		return index > 1;
 	}
