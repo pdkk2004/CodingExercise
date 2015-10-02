@@ -3,17 +3,9 @@ package MiscQuestions;
 import java.util.Iterator;
 import java.util.Stack;
 
+import Common.TreeNode;
+
 public class BinaryTreeIterator {
-
-	private class TreeNode {
-		TreeNode left;
-		TreeNode right;
-		int v;
-
-		public TreeNode(int v) {
-			this.v = v;
-		}
-	}
 
 	public void preOrderTraverse(TreeNode root) {
 		Stack<TreeNode> stack = new Stack<TreeNode>();
@@ -25,7 +17,7 @@ public class BinaryTreeIterator {
 				p = p.left;
 			} else {
 				TreeNode toPrt = stack.pop();
-				System.out.print(toPrt.v);
+				System.out.print(toPrt.val);
 				p = toPrt.right;
 			}
 		}

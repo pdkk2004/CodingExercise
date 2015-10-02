@@ -35,12 +35,11 @@ public class KFrequentWordsInFile {
 			this.count++;
 		}
 		
-		@Override
 		public int compareTo(WordCounter wc) {
 			return this.count - wc.count;
 		}
 		
-		// Override
+		@Override
 		public String toString() {
 			return joiner.join(this.word, this.count);
 		}
