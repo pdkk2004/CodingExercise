@@ -3,8 +3,6 @@ package Common;
 import java.util.Arrays;
 import java.util.Comparator;
 
-import com.google.common.base.Joiner;
-
 public class Heap<T> {
 	
 	private int capacity;
