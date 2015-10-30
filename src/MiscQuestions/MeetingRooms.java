@@ -3,6 +3,11 @@ package MiscQuestions;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * http://www.fgdsb.com/2015/01/30/meeting-rooms/
+ * @author kkdpan
+ *
+ */
 public class MeetingRooms {
 	
 	private static class Pair implements Comparable<Pair> {

@@ -1,5 +1,9 @@
 package MiscQuestions;
 
+import java.util.Arrays;
+
+import org.junit.Test;
+
 /**
  * http://www.fgdsb.com/2015/01/15/random-maximum/
  * Use reservoir sampling to do one pass.
@@ -27,5 +31,14 @@ public class RandomMaximum {
 			}
 		}
 		return ret;
+	}
+	
+	@Test
+	public void test() {
+		int[] test = {1, 8, 4, 2, 5, 8, 8, 6, 8};
+		System.out.println(Arrays.toString(test));
+		for (int i = 0; i < 10; i++) {
+			System.out.println(randomMaxium(test));
+		}
 	}
 }

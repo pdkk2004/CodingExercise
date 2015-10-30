@@ -4,6 +4,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * http://www.fgdsb.com/2015/01/27/factor-combinations/
+ * @author kkdpan
+ *
+ */
 public class FactorCombination {
 
 	public static List<List<Integer>> factorCombination(int num) {

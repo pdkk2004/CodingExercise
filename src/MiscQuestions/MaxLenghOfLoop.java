@@ -2,6 +2,11 @@ package MiscQuestions;
 
 import org.junit.Assert;
 
+/**
+ * http://www.fgdsb.com/2015/01/19/max-length-of-the-loop/
+ * @author kkdpan
+ *
+ */
 public class MaxLenghOfLoop {
 	
 	public static int maxLenghOfLoop(int[] array) {

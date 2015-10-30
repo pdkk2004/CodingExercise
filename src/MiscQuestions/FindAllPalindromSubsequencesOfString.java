@@ -11,7 +11,7 @@ import java.util.Set;
 import org.junit.*;
 
 /**
- * Very interesting interview question, and the solution is genius. 
+ * Very interesting interview question, and the solution is genius!! 
  * http://www.mitbbs.com/article/JobHunting/33053715_0.html
  * @author kkdpan
  *

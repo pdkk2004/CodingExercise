@@ -10,6 +10,11 @@ import java.util.Set;
 
 import Common.UnionFindSet;
 
+/**
+ * http://www.fgdsb.com/2015/01/25/group-contacts/
+ * @author kkdpan
+ *
+ */
 public class GroupContacts {
 
 	public static class Contact {

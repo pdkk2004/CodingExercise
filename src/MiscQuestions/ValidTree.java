@@ -4,6 +4,12 @@ import java.util.Set;
 
 import Common.UnionFindSet;
 
+/**
+ * http://www.fgdsb.com/2015/02/16/valid-tree/
+ * @author kkdpan
+ *
+ */
+		
 public class ValidTree {
 	
 	private static class Pair {

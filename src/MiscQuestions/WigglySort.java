@@ -2,6 +2,7 @@ package MiscQuestions;
 
 public class WigglySort {
 
+	//http://www.fgdsb.com/2015/01/20/special-sorting/
 	public static void wigglySort(int[] array) {
 		int l = array.length;
 		boolean smallHead = true;

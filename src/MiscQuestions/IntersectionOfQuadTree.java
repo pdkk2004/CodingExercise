@@ -2,6 +2,11 @@ package MiscQuestions;
 
 import Common.QuadTree;
 
+/**
+ * http://www.fgdsb.com/2015/01/25/intersection-of-two-quadtrees/
+ * @author kkdpan
+ *
+ */
 public class IntersectionOfQuadTree {
 	
 	public static QuadTree matrix2QuadTree(int[][] matrix, int n) {

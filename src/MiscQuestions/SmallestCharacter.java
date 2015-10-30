@@ -2,6 +2,11 @@ package MiscQuestions;
 
 import org.junit.*;
 
+/**
+ * http://www.fgdsb.com/2015/02/10/smallest-character/
+ * @author kkdpan
+ *
+ */
 public class SmallestCharacter {
 
 	public static char findSmallestCharacter(char[] chars, char key) {

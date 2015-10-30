@@ -34,12 +34,13 @@ public class TaskScheduler {
 		executor = new Thread(new Runnable() {
 			public void run() {
 				lock.lock();
-				while (true) {
+				while (!Thread.currentThread().isInterrupted()) {
 					while (queue.isEmpty()) {
 						try {
 							notReady.await();
 						} catch (InterruptedException ie) {
 							System.out.println(ie.getMessage());
+							return;
 						}
 					}
 					Task t = queue.peek();
@@ -61,12 +62,10 @@ public class TaskScheduler {
 		});
 	}
 	
-	public void addTask(Task t) {
+	public void addTask(Task t) throws InterruptedException {
 		try {
 			lock.lockInterruptibly();
 			queue.add(t);
-		} catch (InterruptedException ie) {
-			System.out.println("Fail to add task." + ie.getMessage());
 		} finally {
 			lock.unlock();
 			notReady.signalAll();
@@ -90,5 +89,9 @@ public class TaskScheduler {
 	
 	public void invokeScheduler() {
 		executor.start();
+	}
+	
+	public void shutdown() {
+		executor.interrupt();
 	}
 }

@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
+/**
+ * http://www.fgdsb.com/2015/01/30/zigzag-iterator/
+ * @author kkdpan
+ *
+ */
 public class ZigZagIterator {
 	public static String zigzagIterator(Iterator<Character> it1, Iterator<Character> it2) {
 		

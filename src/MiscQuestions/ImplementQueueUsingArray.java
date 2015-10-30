@@ -10,6 +10,7 @@ public class ImplementQueueUsingArray {
 		private int front;
 		private int tail;
 		private int capacity;
+		private int size;
 
 		
 		public ArrayQueue() {
@@ -33,6 +34,7 @@ public class ImplementQueueUsingArray {
 				tail = (tail + 1) % capacity;
 			}
 			array[tail] = value;
+			size++;
 			return true;
 		}
 		
@@ -48,6 +50,7 @@ public class ImplementQueueUsingArray {
 				ret = array[front];
 				front = (front + 1) % capacity;
 			}
+			size--;
 			return ret;
 		}
 		
