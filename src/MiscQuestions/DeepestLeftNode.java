@@ -9,6 +9,12 @@ public class DeepestLeftNode {
 		TreeNode ret;
 	}
 	
+	/**
+	 * Recursively go through all nodes and update the
+	 * deepest left node.
+	 * @param root
+	 * @return
+	 */
 	public static TreeNode findDeepestLeftNode(TreeNode root) {
 		Result r = new Result();
 		helper(root, r, 0, false);

@@ -15,10 +15,12 @@ public class AllFactorsProducts {
 	public static List<Integer> allFactorsProducts(int[] primes) {
 		List<Integer> ret = new LinkedList<>();
 		ret.add(1);
-		helper(primes, 0, 1, ret);
+//		helper(primes, 0, 1, ret);
+		dfs(primes, 0, 1, ret);
 		return ret;
 	}
 	
+	//Backtracking solution
 	private static void helper(int[] primes, int index, int product, List<Integer> ret) {
 		if (index == primes.length) {
 			return;
@@ -30,6 +32,18 @@ public class AllFactorsProducts {
 			helper(primes, i + 1, product, ret);
 			product /= primes[i];
 		}
+	}
+	
+	//DFS solution
+	private static void dfs(int[] primes, int index, int product, List<Integer> ret) {
+		if (index == primes.length) {
+			return;
+		}
+		
+		int newProduct = product * primes[index];
+		ret.add(newProduct);
+		dfs(primes, index + 1, newProduct, ret);
+		dfs(primes, index + 1, product, ret);
 	}
 	
 	@Test
