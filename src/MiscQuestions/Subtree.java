@@ -19,8 +19,12 @@ public class Subtree {
 			if (n.val == t2.val && isSameTree(n, t2)) {
 				return true;
 			}
-			stack.push(n.right);
-			stack.push(n.left);
+			if (n.right != null) {
+				stack.push(n.right);
+			}
+			if (n.left != null) {
+				stack.push(n.left);
+			}
 		}
 		return false;
 	}
