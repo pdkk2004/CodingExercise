@@ -1,25 +1,25 @@
 package Common;
 
 public class SegmentTree {
-	
+
 	private int[] segArray;
 	private int[] valArray;
 	private Operable<Integer> oper;
-	
+
 	public SegmentTree(int[] valArray) {
 		this(valArray, (v1, v2) -> v1 + v2);
 	}
-	
+
 	public SegmentTree(int[] valArray, Operable<Integer> op) {
 		int l = valArray.length;
 		this.valArray = valArray;
 		this.oper = op;
-		double height = (int)Math.ceil(Math.log(l) / Math.log(2));
-		int maxLength = (int)Math.pow(2.0, height) * 2 - 1;
+		double height = (int) Math.ceil(Math.log(l) / Math.log(2));
+		int maxLength = (int) Math.pow(2.0, height) * 2 - 1;
 		segArray = new int[maxLength];
 		this.build(valArray, 0, l - 1, segArray, 0);
 	}
-	
+
 	private int build(int[] vals, int b, int e, int[] segs, int root) {
 		if (b == e) {
 			segs[root] = vals[b];
@@ -30,27 +30,55 @@ public class SegmentTree {
 		segs[root] = oper.operate(left, right);
 		return segs[root];
 	}
-	
+
 	/**
-	 * Get sum of range from index b to index e of array.
+	 * Get result of range from index b to index e of array based on the operation provided.
+	 * 
 	 * @param b
 	 * @param e
 	 * @return sum of the range.
 	 */
-	public int getSum(int b, int e) {
-		return getSumUtil(b, e, 0, valArray.length - 1, 0);
+	public int getOperationOfRange(int b, int e) {
+		return getOperationOfRangeUtil(b, e, 0, valArray.length - 1, 0, this.oper);
 	}
-	
-	private int getSumUtil(int b, int e, int seqB, int seqE, int seqIndex) {
-		if (b <= seqB && e >= seqE) {
-			return this.segArray[seqIndex];
+
+	private int getOperationOfRangeUtil(int b, int e, int segB, int segE, int segIndex, Operable<Integer> op) {
+		if (b <= segB && e >= segE) {
+			return this.segArray[segIndex];
 		}
-		
-		if (b > seqE || e < seqB) {
+
+		if (b > segE || e < segB) {
 			return 0;
 		}
+
+		int mid = segB + (segE - segB) / 2;
+		return op.operate(getOperationOfRangeUtil(b, e, segB, mid, segIndex * 2 + 1, op),
+				getOperationOfRangeUtil(b, e, mid + 1, segE, segIndex * 2 + 2, op));
+	}
+	
+	/**
+	 * Update value of array at given index to new value.
+	 * 
+	 * @param index
+	 * @param newVal
+	 */
+	public void update(int index, int newVal) {
+		updateUtil(index, newVal, 0, valArray.length - 1, 0, this.oper);
+	}
+	
+	private int updateUtil(int index, int newVal, int segB, int segE, int segIndex, Operable<Integer> op) {
+		if (index < segB && index > segE) {
+			return segArray[segIndex];
+		}
 		
-		int mid = seqB + (seqE - seqB) / 2;
-		return getSumUtil(b, e, seqB, mid, seqIndex * 2 + 1) + getSumUtil(b, e, mid + 1, seqE, seqIndex * 2 + 2);
+		if (segB == segE) {
+			segArray[segIndex] = newVal;
+		} else {
+			int mid = segB + (segE - segB) / 2;
+			segArray[segIndex] = op.operate(updateUtil(index, newVal, segB, mid, segIndex * 2 + 1, op),
+					updateUtil(index, newVal, mid + 1, segE, segIndex * 2 + 1, op));
+		}
+		return segArray[segIndex];
+
 	}
 }
