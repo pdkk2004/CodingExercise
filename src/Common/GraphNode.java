@@ -8,7 +8,7 @@ public class GraphNode<V> {
 	private V value;
 	
 	private Set<GraphNode<V>> children;
-	
+
 	public GraphNode(V value) {
 		this.value = value;
 		this.children = new HashSet<>();
