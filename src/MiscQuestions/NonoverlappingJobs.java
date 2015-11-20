@@ -39,7 +39,7 @@ public class NonoverlappingJobs {
 		
 		for (int i = 0; i < jobs.length; i++) {
 			int pi = findPi(jobs, jobs[i], 0, i - 1);
-			C[i + 1] = Math.max(jobs[i].cost + C[pi + 1], C[i - 1]);
+			C[i + 1] = Math.max(jobs[i].cost + C[pi + 1], C[i]);
 		}
 		return C[jobs.length];
 	}
@@ -60,6 +60,14 @@ public class NonoverlappingJobs {
 	
 	@Test
 	public void test() {
+		Job[] jobs = new Job[6];
+		jobs[0] = new Job(0, 3, 5);
+		jobs[1] = new Job(2, 5, 10);
+		jobs[2] = new Job(8, 10, 5);
+		jobs[3] = new Job(5, 7, 3);
+		jobs[4] = new Job(4, 5, 7);
+		jobs[5] = new Job(6, 8, 1);
 		
+		System.out.println(nonoverlappingJobs(jobs));
 	}
 }
