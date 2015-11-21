@@ -30,7 +30,6 @@ public class MinSumMahattanDistance {
 	
 	private static Point find(Point[] points, int rank, Comparator<Point> cmp) {
 		return findHelper(points, rank, 0, points.length - 1, cmp);
-		
 	}
 	
 	private static Point findHelper(Point[] points, int rank, int b, int e, Comparator<Point> cmp) {
@@ -44,12 +43,35 @@ public class MinSumMahattanDistance {
 			} else {
 				return findHelper(points, rank, pos + 1, e, cmp);
 			}
-		} else {
+		} else if (b == e){
 			return points[b];
+		} else {
+			throw new RuntimeException();
 		}
 	}
 	
 	private static int partition(Point[] points, int pvt, int b, int e, Comparator<Point> cmp) {
-		throw new RuntimeException();
+		swap(points, b, pvt);
+		Point p = points[b];
+		int i = b;
+		int j = i + 1;
+		while (j <= e) {
+			if (cmp.compare(points[j], p) <= 0) {
+				swap(points, ++i, j);
+			} 
+			j++;
+		}
+		swap(points, b, i);
+		return i;
+	}
+	
+	private static void swap(Point[] points, int b, int e) {
+		Point temp = points[b];
+		points[b] = points[e];
+		points[e] = temp;
+	}
+	
+	public void test() {
+		
 	}
 }
