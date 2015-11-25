@@ -8,10 +8,12 @@ public class Trie {
 	public static class TrieNode {
 		private boolean isEnd;
 		private TrieNode[] children;
+		private int count;
 		
 		public TrieNode() {
 			this.isEnd = false;
 			this.children = new TrieNode[256];
+			this.count = 0;
 		}
 		
 		/**
@@ -28,6 +30,10 @@ public class Trie {
 		 */
 		public TrieNode[] getChildren() {
 			return this.children;
+		}
+
+		public int getCount() {
+			return count;
 		}
 	}
 	
@@ -50,6 +56,7 @@ public class Trie {
 				n.children[c] = new TrieNode();
 			}
 			n = n.children[c];
+			n.count++;
 		}
 		n.isEnd = true;
 		size++;
