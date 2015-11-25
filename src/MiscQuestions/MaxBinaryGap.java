@@ -15,18 +15,14 @@ public class MaxBinaryGap {
 		int max = 0;
 		int c = -1;
 		while (num != 0) {
-			if (c < 0 && (num & 1) == 1) {
-				c = 0;
-				num >>>= 1;
-				continue;
-			}
-			if (c >= 0) {
-				if ((num & 1) == 0) {
+			int dig = num & 1;
+			if (dig == 0) {
+				if (c >= 0) {
 					c++;
-				} else {
-					max = Math.max(c, max);
-					c = 0;
 				}
+			} else {
+				max = Math.max(c, max);
+				c = 0;
 			}
 			num >>>= 1;
 		}
