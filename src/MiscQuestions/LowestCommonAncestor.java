@@ -34,17 +34,20 @@ public class LowestCommonAncestor {
 		int depth1 = depth(t1);
 		int depth2 = depth(t2);
 		int diff = Math.abs(depth1 - depth2);
-		TreeNodeWithParent lowerNode = depth1 > depth2 ? t1 : t2;
-		TreeNodeWithParent higherNode = depth1 > depth2 ? t2 : t1;
-		for (int i = 0; i < diff; i++) {
-			lowerNode = lowerNode.p;
+		if (depth1 > depth2) {
+			TreeNodeWithParent temp = t1;
+			t1 = t2;
+			t2 = temp;
 		}
-		while (lowerNode != null && higherNode != null) {
-			if (lowerNode == higherNode) {
-				return lowerNode;
+		for (int i = 0; i < diff; i++) {
+			t2 = t2.p;
+		}
+		while (t2 != null && t1 != null) {
+			if (t2 == t1) {
+				return t2;
 			}
-			lowerNode = lowerNode.p;
-			higherNode = higherNode.p;
+			t2 = t2.p;
+			t1 = t1.p;
 		}
 		return null;
 	}
