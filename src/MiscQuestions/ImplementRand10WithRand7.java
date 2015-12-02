@@ -19,3 +19,10 @@ public class ImplementRand10WithRand7 {
 		return (int)Math.random() * 7 + 1;
 	}
 }
+
+/**
+ * Things learned:
+ * 如果给你两个生成随机数的函数Randa和Randb， 你可以通过以下方式轻松构造Randab，生成1到ab的随机数：
+ * Randab = b  (Randa - 1) + Randb
+ * Randab = a * (Randb - 1) + Randa
+ **/
