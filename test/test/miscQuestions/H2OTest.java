@@ -12,7 +12,7 @@ public class H2OTest {
 	}
 	
 	@Test
-	public void testH2O() {
+	public <T> void testH2O() {
 		H2O h2o = new H2O();
 		Selection[] input = {Selection.O, Selection.H, Selection.H, Selection.H, Selection.H, Selection.H, Selection.O, Selection.H, Selection.H};
 		for (Selection s : input) {
