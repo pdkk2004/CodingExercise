@@ -2,29 +2,73 @@ package MiscQuestions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Iterator;
 
 /**
  * http://www.fgdsb.com/2015/01/30/zigzag-iterator/
+ * Extended to K iterators case.
  * @author kkdpan
  *
  */
-public class ZigZagIterator {
+public class ZigZagIterator<E> {
+	
+	private ArrayList<Iterator<E>> iterators;
+	private int n;
+	private int pointer;
+	
+	public ZigZagIterator(Collection<Iterator<E>> iterators) {
+		this.iterators = new ArrayList<>(iterators);
+		this.n = iterators.size();
+		this.pointer = 0;
+		initialize();
+	}
+	
+	private void initialize() {
+		int oldPointer = pointer;
+		while (!iterators.get(pointer).hasNext() && pointer != oldPointer) {
+			pointer = ++pointer % n;
+		}
+	}
+	
+	public boolean hasNext() {
+		return iterators.get(pointer).hasNext();
+	}
+	
+	public E next() {
+		E ret = iterators.get(pointer).next();
+		int oldPointer = pointer;
+		
+		do {
+			pointer = ++pointer % n;
+		} while (!iterators.get(pointer).hasNext() && pointer != oldPointer);
+		
+		return ret;
+	}
+	
 	public static String zigzagIterator(Iterator<Character> it1, Iterator<Character> it2) {
 		
-		ArrayList<Iterator<Character>> iters = new ArrayList<>();
-		iters.add(it1);
-		iters.add(it2);
-		int count = 0;
+		ZigZagIterator<Character> zzIterator = new ZigZagIterator(Arrays.asList(it1, it2));
 		StringBuilder sb = new StringBuilder();
-		while (iters.get(0).hasNext() && iters.get(1).hasNext()) {
-			sb.append(iters.get(count % 2).next());
-			count++;
+		while (zzIterator.hasNext()) {
+			char c = zzIterator.next();
+			sb.append(c);
 		}
-		
-		it1.forEachRemaining(c -> sb.append(c));
-		it2.forEachRemaining(c -> sb.append(c));
 		return sb.toString();
+		
+//		ArrayList<Iterator<Character>> iters = new ArrayList<>();
+//		iters.add(it1);
+//		iters.add(it2);
+//		int count = 0;
+//		StringBuilder sb = new StringBuilder();
+//		while (iters.get(0).hasNext() && iters.get(1).hasNext()) {
+//			sb.append(iters.get(count % 2).next());
+//			count++;
+//		}
+//		
+//		it1.forEachRemaining(c -> sb.append(c));
+//		it2.forEachRemaining(c -> sb.append(c));
+//		return sb.toString();
 	}
 	
 	public static void main(String[] args) {
