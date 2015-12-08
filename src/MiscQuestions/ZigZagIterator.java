@@ -48,7 +48,7 @@ public class ZigZagIterator<E> {
 	
 	public static String zigzagIterator(Iterator<Character> it1, Iterator<Character> it2) {
 		
-		ZigZagIterator<Character> zzIterator = new ZigZagIterator(Arrays.asList(it1, it2));
+		ZigZagIterator<Character> zzIterator = new ZigZagIterator<Character>(Arrays.asList(it1, it2));
 		StringBuilder sb = new StringBuilder();
 		while (zzIterator.hasNext()) {
 			char c = zzIterator.next();
