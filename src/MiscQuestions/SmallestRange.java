@@ -33,10 +33,9 @@ public class SmallestRange {
 		}
 		
 		int minRange = Integer.MAX_VALUE;
-		while (heap.size() == input.size()) {
+		while (heap.size() == input.size()) {   //Note: need to keep heap.size() == input.size() condition in loop.
 			ListNode minNode = heap.poll();
 			int range = max - minNode.val;
-//			System.out.println(Arrays.toString(ret));  //Debug output
 			if (range < minRange) {
 				ret[0] = minNode.val;
 				ret[1] = max;
