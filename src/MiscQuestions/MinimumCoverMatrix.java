@@ -3,6 +3,11 @@ package MiscQuestions;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * http://www.fgdsb.com/2015/01/13/minimum-cover-matrix/
+ * @author kkdpan
+ *
+ */
 public class MinimumCoverMatrix {
 
 	public static int minCoverMatrix(char[][] matrix) {

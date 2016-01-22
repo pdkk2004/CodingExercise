@@ -2,6 +2,7 @@ package MiscQuestions;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.PriorityQueue;
 
@@ -30,6 +31,8 @@ public class MergeSortedIterator<V extends Comparable<? super V>> {
 				heap.offer(new Pair<V, Integer>(iterList.get(i).next(), i));
 			}
 		}
+		
+		Comparator<Integer> c = Comparator.comparing(x -> x);
 	}
 	
 	public boolean hasNext() {
