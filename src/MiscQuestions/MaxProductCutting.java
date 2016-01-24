@@ -18,7 +18,7 @@ public class MaxProductCutting {
 		P[2] = 1;
 		for (int i = 3; i <= n; i++) {
 			int max = 0;
-			for (int j = 1; j < 3; j++) {
+			for (int j = 1; j < i; j++) {
 				int m = Math.max((i - j) * j, j * P[i - j]);
 				max = m > max ? m : max;
 			}
