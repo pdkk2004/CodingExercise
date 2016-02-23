@@ -17,12 +17,11 @@ public class MaxProductCutting {
 		
 		P[2] = 1;
 		for (int i = 3; i <= n; i++) {
-			int max = 0;
+			P[i] = 0;
 			for (int j = 1; j < i; j++) {
 				int m = Math.max((i - j) * j, j * P[i - j]);
-				max = m > max ? m : max;
+				P[i] = Math.max(P[i], m);
 			}
-			P[i] = max;
 		}
 		return P[n];
 	}
