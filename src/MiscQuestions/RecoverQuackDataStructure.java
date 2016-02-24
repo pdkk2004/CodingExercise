@@ -25,7 +25,7 @@ public class RecoverQuackDataStructure {
 		
 		while (!quack.isEmpty()) {
 			int toAdd = quack.poll();
-			if (!quack.isEmpty()) {
+			if (!quack.isEmpty()) {  //Note: Need to check isEmpty() after poll and before peek.
 				int cmp = quack.peek();
 				if (cmp > toAdd) {
 					head.add(toAdd);
@@ -51,7 +51,7 @@ public class RecoverQuackDataStructure {
 		while (!quack.isEmpty()) {
 			int toAdd = quack.poll();
 			count++;
-			if (quack.isEmpty()) {
+			if (quack.isEmpty()) {   //Note: Need to check isEmpty() after poll and before peek.
 				while (count >= 1) {
 					head.add(toAdd);
 					count--;

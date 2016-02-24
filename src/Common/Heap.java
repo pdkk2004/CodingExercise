@@ -3,6 +3,12 @@ package Common;
 import java.util.Arrays;
 import java.util.Comparator;
 
+/**
+ * Max heap implementation based on natural order of element.
+ * @author kkdpan
+ *
+ * @param <T>
+ */
 public class Heap<T> {
 	
 	private int capacity;

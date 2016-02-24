@@ -9,6 +9,8 @@ import org.junit.*;
  * Sol 1: Use enhanced merge sort solution.
  * Sol 2: Use AVL Binary Search tree. Insert element array[i] one by one, and count the number of node that smaller than array[i] during traverse.
  * http://www.geeksforgeeks.org/counting-inversions/
+ * 
+ * There is a similar question: http://www.fgdsb.com/2015/01/11/maximal-surpasser-count/
  * @author kkdpan
  *
  */
