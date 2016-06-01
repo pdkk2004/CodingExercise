@@ -57,8 +57,10 @@ public class UnionFindSet<T> {
 		if (node == null) {
 			return null;
 		}
-		if (node.parent != value) {
-			node.parent = findSet(node.parent);
+		while (!node.parent.equals(node.value)) {
+			Node<T> pNode = map.get(node.parent);
+			node.parent = pNode.parent;
+			node = pNode;
 		} 
 		return node.parent;
 	}
@@ -84,8 +86,8 @@ public class UnionFindSet<T> {
 				n2.rank += 1;
 			}
 			n1.parent = n2.value;
-			setNum--;
 		}
+		setNum--;
 	}
 	
 	public void removeSet(T o) {

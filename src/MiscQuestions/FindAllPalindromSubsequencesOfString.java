@@ -51,23 +51,20 @@ public class FindAllPalindromSubsequencesOfString {
 			for (char c : charSet) {
 				ArrayList<Integer> lookup = lookToEnd.get(c);
 				if (lookup == null) {
-					lookup = new ArrayList<>();
+					lookup = new ArrayList<>(str.length());
+					Collections.fill(lookup, null);
 					lookToEnd.put(c, lookup);
 				}
 				if (c == str.charAt(i)) {
-					lookup.add(len - 1 - i, i);
+					lookup.add(i, i);
 				} else {
 					if (i == len - 1) {
-						lookup.add(len - 1 - i, null);
+						lookup.add(i, null);
 					} else {
-						lookup.add(len - 1 - i, lookup.get(len - i - 2));
+						lookup.add(i, lookup.get(i + 1));
 					}
 				}
 			}
-		}
-		
-		for (char c : charSet) {
-			Collections.reverse(lookToEnd.get(c));
 		}
 		
 		List<String> ret = new LinkedList<>();
