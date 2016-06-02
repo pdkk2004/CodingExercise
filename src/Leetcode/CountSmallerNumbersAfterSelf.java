@@ -5,55 +5,56 @@ import java.util.List;
 
 import org.junit.Test;
 
+import org.junit.*;
+
 public class CountSmallerNumbersAfterSelf {
 	
-	public static List<Integer> countSmaller(int[] nums) {
-		Integer[] ret = new Integer[nums.length];
-		Arrays.fill(ret, 0);
-		mergeSort(nums, 0, nums.length - 1, ret);
-		return Arrays.asList(ret);
-	}
+	public List<Integer> countSmaller(int[] nums) {
+		int l = nums.length;
+		int[] index = new int[l];
+		Integer[] counts = new Integer[l];
 
-	private static void mergeSort(int[] nums, int start, int end, Integer[] count) {
-		if (start >= end) {
-			return;
+		for (int i = 0; i < l; i++) {
+			index[i] = i;
+			counts[i] = 0;
 		}
 
-		int m = start + (end - start) / 2;
-		mergeSort(nums, start, m, count);
-		mergeSort(nums, m + 1, end, count);
-		merge(nums, start, m, end, count);
+		countHelper(nums, index, counts, 0, l - 1);
+		return Arrays.asList(counts);
 	}
 
-	private static void merge(int[] nums, int b, int m, int e, Integer[] count) {
-		if (b < 0 || e >= nums.length || b > e) {
-			return;
+	private void countHelper(int[] nums, int[] index, Integer[] counts, int b, int e) {
+		if (b < e) {
+			int m = b + (e - b) / 2;
+			countHelper(nums, index, counts, b, m);
+			countHelper(nums, index, counts, m + 1, e);
+			merge(nums, index, counts, b, e);
 		}
+	}
 
-		int[] buffer = new int[e - b + 1];
-
-		int i = b, j = m + 1, c = 0;
+	private void merge(int[] nums, int[] index, Integer[] counts, int b, int e) {
+		int m = b + (e - b) / 2;
+		int[] temp = new int[e - b + 1];
+		int i = b, j = m + 1;
+		int c = 0;
 		while (i <= m && j <= e) {
-			while (j <= e && nums[i] > nums[j]) {
-				buffer[c++] = nums[j++];
+			if (nums[index[i]] > nums[index[j]]) {
+				counts[index[i]] += e - j + 1;
+				temp[c] = index[i];
+				i++;
+			} else {
+				temp[c] = index[j];
+				j++;
 			}
-			if (j <= e) {
-				count[i] = j - m;
-				buffer[c++] = nums[i++];
-			}
-			
+			c++;
 		}
-
 		while (i <= m) {
-			buffer[c++] = nums[i];
-			count[i++] += e - m;
+			temp[c++] = index[i++];
 		}
-
-		if (j <= e) {
-			System.arraycopy(nums, j, buffer, c, e - j + 1);
+		while (j <= e) {
+			temp[c++] = index[j++];
 		}
-		
-		System.arraycopy(buffer, 0, nums, b, e - b + 1);
+		System.arraycopy(temp, 0, index, b, c);
 	}
 	
 	@Test
@@ -62,5 +63,8 @@ public class CountSmallerNumbersAfterSelf {
 		
 		List<Integer> ret = countSmaller(nums);
 		System.out.println(ret.toString());
+		
+		Integer[] expected = {2,1,1,0};
+		Assert.assertEquals(ret, Arrays.asList(expected));
 	}
 }
