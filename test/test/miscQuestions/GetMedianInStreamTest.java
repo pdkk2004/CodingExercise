@@ -10,24 +10,24 @@ public class GetMedianInStreamTest {
 	
 	@Test
 	public void testOdd() {
-		GetMedianInStream median = new GetMedianInStream();
-		median.add(1);
-		median.add(1);
-		median.add(2);
-		median.add(2);
-		median.add(3);
+		GetMedianInStream median = new GetMedianInStream(5);
+		median.insert(1);
+		median.insert(1);
+		median.insert(2);
+		median.insert(2);
+		median.insert(3);
 		Assert.assertTrue(median.getMedian() == 2);
 	}
 	
 	@Test
 	public void testEven() {
-		GetMedianInStream median = new GetMedianInStream();
-		median.add(1);
-		median.add(2);
-		median.add(3);
-		median.add(4);
-		median.add(4);
-		median.add(4);
+		GetMedianInStream median = new GetMedianInStream(5);
+		median.insert(1);
+		median.insert(2);
+		median.insert(3);
+		median.insert(4);
+		median.insert(4);
+		median.insert(4);
 		Assert.assertEquals(3.5, median.getMedian(), 0.001);
 	}
 	
@@ -39,9 +39,9 @@ public class GetMedianInStreamTest {
 			input[i] = (int)(Math.random() * 10000);
 		}
 		
-		GetMedianInStream median = new GetMedianInStream();
+		GetMedianInStream median = new GetMedianInStream(3000);
 		for (int v : input) {
-			median.add(v);
+			median.insert(v);
 		}
 		
 		Arrays.sort(input);
