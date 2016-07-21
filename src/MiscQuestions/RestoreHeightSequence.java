@@ -31,9 +31,11 @@ public class RestoreHeightSequence {
 				}
 				if (p < 0) {
 					break;
-				} else {
-					j++;
 				}
+				j++;
+			}
+			if (j == n) {
+				throw new IllegalArgumentException("Input is invalid.");
 			}
 			ret[j] = heights[index[i]];
 		}
