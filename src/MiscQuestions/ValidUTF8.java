@@ -11,9 +11,9 @@ import org.junit.Test;
  */
 public class ValidUTF8 {
 
-	public static boolean validUTF8(char[] chars) {
+	public static boolean validUTF8(byte[] bytes) {
 		int size = 0;
-		for (char b : chars) {
+		for (byte b : bytes) {
 			if (size == 0) {
 				if ((b >> 5) == 0b110) {
 					size = 1;
@@ -36,7 +36,7 @@ public class ValidUTF8 {
 	
 	@Test
 	public void test() {
-		char[] bytes = {(char)0b10101010};
+		byte[] bytes = {(byte)0b10101010};
 		Assert.assertFalse(validUTF8(bytes));
 	}
 }
