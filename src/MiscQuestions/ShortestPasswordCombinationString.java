@@ -9,6 +9,7 @@ public class ShortestPasswordCombinationString {
 		
 		for (int i = 0; i < input.length; i++) {
 			Set<String> visited = new HashSet<>();
+			visited.add(input[i]);
 			StringBuilder sb = new StringBuilder(input[i]);
 			boolean success = dfs(input[i], visited, sb);
 			if (success) {
@@ -22,7 +23,6 @@ public class ShortestPasswordCombinationString {
 		if (visited.size() == 10000) {
 			return true;
 		}
-		visited.add(start);
 		String last3 = start.substring(1);
 		for (char c = '0'; c <= '9'; c++) {
 			String next = last3 + c;
@@ -30,12 +30,13 @@ public class ShortestPasswordCombinationString {
 				continue;
 			}
 			sb.append(c);
+			visited.add(next);
 			if (dfs(next, visited, sb)) {
 				return true;
 			}
 			sb.deleteCharAt(sb.length() - 1);
+			visited.remove(next);
 		}
-		visited.remove(start);
 		return false;
 	}
 }
